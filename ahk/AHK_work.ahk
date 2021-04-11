@@ -64,18 +64,37 @@ CheckAnyKeyPress:
     GetKeyState, KeyPressDown,    a
     GetKeyState, KeyPressRight,   s
     GetKeyState, KeyPressLeft,    d
+    GetKeyState, KeyPress1,       1
+    GetKeyState, KeyPress2,       2
+    GetKeyState, KeyPress3,       3
+    GetKeyState, KeyPress4,       4
+    GetKeyState, KeyPress5,       5
+    GetKeyState, KeyPress6,       6
+    GetKeyState, KeyPress7,       7
+    GetKeyState, KeyPress8,       8
+    GetKeyState, KeyPress9,       9
+    GetKeyState, KeyPress0,       0
     If (   KeyPressUp      = "D"
         Or KeyPressDown    = "D"
         Or KeyPressRight   = "D"
-        Or KeyPressLeft    = "D" )
+        Or KeyPressLeft    = "D"
+        Or KeyPress1       = "D"
+        Or KeyPress2       = "D"
+        Or KeyPress3       = "D"
+        Or KeyPress4       = "D"
+        Or KeyPress5       = "D"
+        Or KeyPress6       = "D"
+        Or KeyPress7       = "D"
+        Or KeyPress8       = "D"
+        Or KeyPress9       = "D"
+        Or KeyPress0       = "D" )
     {
         AnyKeyPress := 1
         CountDownTime := 0
-
     }
     Else
     {
-        If ( CountDownTime >= 2 )
+        If ( CountDownTime > 0 )
         {
             AnyKeyPress := 0
         }

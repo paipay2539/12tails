@@ -121,19 +121,20 @@ def get_pixel():
     const = {'pos': {}, 'color': {}, 'pos_cal': {}}
     const['pos']['ui'] = (582, 440)
     const['pos']['talk'] = (180, 260)
-    # const['pos']['panda'] = (209, 458)
     const['pos']['create'] = (525, 307)
     const['pos']['start'] = (525, 307)
     const['pos']['quit'] = (570, 395)
     const['pos']['text'] = (177, 361)
     const['pos']['cast'] = (297, 285)
+    const['pos']['end'] = (138, 368)
+
     const['color']['ui'] = (111, 111, 88)
-    # const['color']['panda'] = (242, 197, 143)
     const['color']['create'] = (50, 37, 17)
     const['color']['start'] = (244, 243, 241)
     const['color']['quit'] = (76, 60, 40)
     const['color']['text'] = (216, 200, 176)
     const['color']['cast'] = (90, 73, 57)
+    const['color']['end'] = (78, 62, 37)
 
     skill_const = {'pos': {}, 'pos_cal': {}, 'init': {}, 'now': {}, 'cd': {}}
     for i in range(10):
@@ -148,10 +149,13 @@ def get_pixel():
         window_cal(skill_const, win_pos, scan='now')  # get skill_const['cd']
         # print(skill_const['cd']['s1'])
 
+        """
         ''' 1/1 mole '''
         #wait(const['pos_cal']['text'], const['color']['text'], 'text')
         #pyautogui.click(clicks=3, interval=2)
         wait(const['pos_cal']['ui'], const['color']['ui'], 'ui_mission')
+        wait_cooldown(skill_const, ['s2'])
+        wait_casting(const)
         wait_cooldown(skill_const, ['s1'])
         wait_casting(const)
         key_hold('w', 4)
@@ -164,15 +168,40 @@ def get_pixel():
         wait_cooldown(skill_const, ['s1'])
         wait_casting(const)
         key_hold('e', 4)
-
         ''' 1/1 mole '''
+        """
 
-
-        ''' quit to start '''
+        ''' 4/3 mole '''
         wait(const['pos_cal']['ui'], const['color']['ui'], 'ui_mission')
-        pyautogui.press('f3', interval=1)
-        wait(const['pos_cal']['quit'], const['color']['quit'], 'quit')
-        pyautogui.click(*const['pos_cal']['quit'])
+        window_cal(skill_const, win_pos, scan='now')
+        wait_cooldown(skill_const, ['s1'])
+        wait_casting(const)
+        key_hold('s', 4)
+        wait_cooldown(skill_const, ['s2'])
+        wait_casting(const)
+        wait_cooldown(skill_const, ['s1'])
+        wait_casting(const)
+        key_hold('q', 4)
+        wait_cooldown(skill_const, ['s1'])
+        wait_casting(const)
+        key_hold('w', 4)
+        wait_cooldown(skill_const, ['s1'])
+        wait_casting(const)
+        key_hold('e', 4)
+        ''' 4/3 mole '''
+
+        ''' force exit mission '''
+        # wait(const['pos_cal']['ui'], const['color']['ui'], 'ui_mission')
+        # pyautogui.press('f3', interval=1)
+        # wait(const['pos_cal']['quit'], const['color']['quit'], 'quit')
+        # pyautogui.click(*const['pos_cal']['quit'])
+        ''' force exit mission '''
+
+        ''' mision complete or fail '''
+        wait(const['pos_cal']['end'], const['color']['end'], 'end')
+        pyautogui.click(*const['pos_cal']['end'])
+        ''' mision complete or fail '''
+
         ''' camp '''
         wait(const['pos_cal']['ui'], const['color']['ui'], 'ui_home')
         key_hold('s', 1.5)
@@ -183,7 +212,7 @@ def get_pixel():
         pyautogui.click(*const['pos_cal']['create'])
         wait(const['pos_cal']['start'], const['color']['start'], 'start')
         pyautogui.click(*const['pos_cal']['start'])
-        ''' quit to start  '''
+        ''' camp '''
 
 
         posXY = pyautogui.position()
